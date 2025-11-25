@@ -1,11 +1,21 @@
 {
-  "name": "Azure IoT Ops Minimal",
+  "name": "Azure IoT Ops Codespace",
   "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
-  "features": {
-    "ghcr.io/devcontainers/features/azure-cli:1": {},
-    "ghcr.io/devcontainers/features/kubectl:1": {},
-    "ghcr.io/devcontainers/features/helm:1": {},
-    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-azuretools.vscode-docker",
+        "ms-kubernetes-tools.vscode-kubernetes-tools"
+      ]
+    }
   },
-  "postCreateCommand": "sudo apt update && sudo apt install -y make jq curl bash git && curl -s https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | bash"
+
+  "remoteUser": "vscode",
+
+  "postCreateCommand": "bash .devcontainer/setup.sh",
+
+  "runArgs": [
+    "--privileged"
+  ]
 }
